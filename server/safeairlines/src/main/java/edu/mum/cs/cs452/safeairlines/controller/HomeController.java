@@ -13,4 +13,8 @@ public class HomeController {
     public String loadHome(){
         return "home";
     }
+
+    public String getUsers(){
+        return "users";
+    }
 }
