@@ -8,4 +8,7 @@ public interface FlightService {
 
     Flight saveFlight(Flight flight);
     List<Flight> getAllFlights();
+    void deleteFlightById(Long id);
+    Flight getFlightById(Long id);
+    List<Flight> getFlightBaseOnCriteria(String chain);
 }

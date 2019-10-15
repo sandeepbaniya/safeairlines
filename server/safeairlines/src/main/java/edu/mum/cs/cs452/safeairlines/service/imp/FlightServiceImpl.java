@@ -27,4 +27,22 @@ public class FlightServiceImpl implements FlightService {
     public List<Flight> getAllFlights(){
         return flightRepository.findAll();
    }
+
+    @Override
+    public void deleteFlightById(Long id) {
+        flightRepository.deleteById(id);
+
+    }
+
+    @Override
+    public Flight getFlightById(Long id) {
+        return  flightRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public List<Flight> getFlightBaseOnCriteria(String chain) {
+        return flightRepository.findAllByFlightNumberContainingOrPlaneNumberContainingOrDepaturePlaceContainingOrArrivalPlaceContains(chain,chain,chain,chain);
+    }
+
+
 }
