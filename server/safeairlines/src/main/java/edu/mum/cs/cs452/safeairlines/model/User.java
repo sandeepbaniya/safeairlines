@@ -1,22 +1,57 @@
 package edu.mum.cs.cs452.safeairlines.model;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.List;
 
+@NoArgsConstructor
+@Data
+@Entity
 public class User {
 
-    private Integer id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "user_id")
+    private Long id;
+
+    @Column(name = "username")
+    @NotBlank
+    @Size(min=5,max = 15, message = "{Size.username}")
+    private String username;
+
     private String firstName;
     private String lastName;
+
+    @Column(name="email")
+    @NotBlank
+    @Email
     private String email;
+
+    @Column(name = "password")
+    @NotBlank
+    @Size(min=5,  message = "{Size.password}")
     private String password;
-    private List<Address> adds;
+
+//    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "user")
+//    private List<Address> adds;
+//
+    @OneToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Role role;
+
+    @ManyToMany(fetch = FetchType.LAZY)
     private List<Flight> flights;
 
-    private List<FeedBack> feedBacks;
-
-
-    private List<PaymentRecord> paymentRecords;
+//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+//    private List<FeedBack> feedBacks;
+//
+//    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//    private List<PaymentRecord> paymentRecords;
 
 
 }
