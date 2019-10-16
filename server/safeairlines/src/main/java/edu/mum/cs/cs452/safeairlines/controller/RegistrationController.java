@@ -40,13 +40,13 @@ public class RegistrationController {
             return "pages/security/registration";
         }
         user.setRole((roleService.getById(1)));
-//        user.setRole((roleService.getById(user.getRole().getId())));
-//        userService.saveUser(user);
-//        if (user.getRole().getId()== SecurityConstants.ROLE_ADMIN)
-//            model.addAttribute("successMessage", "Admin has been registered successfully! Please wait for admin approval");
-//        else if (user.getRole().getId()== SecurityConstants.ROLE_BUYER)
-//            model.addAttribute("successMessage", "Buyer has been registered successfully");
-//        model.addAttribute("user", new User());
+        user.setRole((roleService.getById(user.getRole().getId())));
+        userService.saveUser(user);
+        if (user.getRole().getId()== SecurityConstants.ROLE_ADMIN)
+            model.addAttribute("successMessage", "Admin has been registered successfully! Please wait for admin approval");
+        else if (user.getRole().getId()== SecurityConstants.ROLE_BUYER)
+            model.addAttribute("successMessage", "Buyer has been registered successfully");
+        model.addAttribute("user", new User());
 
         System.out.println(user);
         return "pages/security/registration";
