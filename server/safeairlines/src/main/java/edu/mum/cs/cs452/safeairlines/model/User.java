@@ -32,6 +32,9 @@ public class User {
     @Email
     private String email;
 
+    @Column(name = "active")
+    private int active;
+
     @Column(name = "password")
     @NotBlank
     @Size(min=5,  message = "{Size.password}")
