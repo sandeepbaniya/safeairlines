@@ -3,8 +3,11 @@ package edu.mum.cs.cs452.safeairlines.model;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 @Entity
@@ -13,16 +16,22 @@ public class Flight {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name = "Flight_Number")
+    @NotBlank
     private String flightNumber;
+    @NotBlank
     private String planeNumber;
+    @NotNull
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate deptDate;
-
-    private LocalDateTime deptTime;
+    //@DateTimeFormat(pattern = )
+    private LocalTime deptTime;
+    @NotNull
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate arrivalDate;
     private LocalDateTime arrivalTime;
+    @NotBlank
     private String depaturePlace;
+    @NotBlank
     private String arrivalPlace;
     private Integer numbSeat;
     private Double price;
@@ -68,11 +77,11 @@ public class Flight {
         this.deptDate = deptDate;
     }
 
-    public LocalDateTime getDeptTime() {
+    public LocalTime getDeptTime() {
         return deptTime;
     }
 
-    public void setDeptTime(LocalDateTime deptTime) {
+    public void setDeptTime(LocalTime deptTime) {
         this.deptTime = deptTime;
     }
 

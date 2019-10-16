@@ -4,8 +4,11 @@ import edu.mum.cs.cs452.safeairlines.model.Flight;
 import edu.mum.cs.cs452.safeairlines.service.FlightService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import javax.validation.Valid;
 
 
 @Controller
@@ -23,7 +26,14 @@ public class FlightController {
     }
 
     @PostMapping(value = {"/safeairline/flight/new"})
-    public String addNewFlight(Flight flight, RedirectAttributes attributes){
+    public String addNewFlight(@Valid @ModelAttribute("flight") Flight flight, BindingResult result,
+                               RedirectAttributes attributes, Model model){
+
+        if (result.hasErrors()) {
+            model.addAttribute("errors", result.getAllErrors());
+            return  "flight/addFlight";
+        }
+
         attributes.addFlashAttribute("flight",flightService.saveFlight(flight));
         return "redirect:/safeairline/flight/success";
     }
