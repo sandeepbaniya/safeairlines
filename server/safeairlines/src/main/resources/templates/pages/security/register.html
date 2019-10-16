@@ -46,8 +46,8 @@
 
                 <div class="form-group">
                     <select th:field="*{role.id}" class="form-control">
-                        <option th:text="Buyer" th:value="3"/>
-                        <option th:text="Seller" th:value="2"/>
+                        <option th:text="Buyer" th:value="2"/>
+                        <option th:text="Admin" th:value="1"/>
                     </select>
                     <label th:if="${#fields.hasErrors('role')}" th:errors="*{role}" class="text-danger"></label>
                 </div>
