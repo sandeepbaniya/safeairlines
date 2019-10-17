@@ -12,6 +12,7 @@ import javax.validation.Valid;
 
 
 @Controller
+@RequestMapping("/safeairline/flight")
 public class FlightController {
 
     private FlightService flightService;
@@ -20,12 +21,12 @@ public class FlightController {
         this.flightService=flightService;
     }
 
-    @GetMapping(value = {"/safeairline/flight/new"})
+    @GetMapping(value = {"/new"})
     public String displayFormAddFlight(@ModelAttribute("flight") Flight flight){
         return  "flight/addFlight";
     }
 
-    @PostMapping(value = {"/safeairline/flight/new"})
+    @PostMapping(value = {"/new"})
     public String addNewFlight(@Valid @ModelAttribute("flight") Flight flight, BindingResult result,
                                RedirectAttributes attributes, Model model){
 
@@ -38,40 +39,46 @@ public class FlightController {
         return "redirect:/safeairline/flight/success";
     }
     //this is for the PRG pattern (Post Redirect Get)
-    @GetMapping(value = {"/safeairline/flight/success"})
+    @GetMapping(value = {"/success"})
     public String successFlight(){
         return "flight/saveSuccess";
     }
 
-    @GetMapping(value = {"/safeairline/flight/list"})
+    @GetMapping(value = {"/list"})
     public String displayListFlight(Model model){
         model.addAttribute("flights",flightService.getAllFlights());
         return "flight/listFlight";
     }
 
-    @GetMapping(value = "/safeairline/flight/delete/{id}")
+    @GetMapping(value = "/delete/{id}")
     public String deleteFlightById(@PathVariable("id") Long id){
         flightService.deleteFlightById(id);
         return "redirect:/safeairline/flight/list";
     }
 
-     @GetMapping(value = "/safeairline/flight/edit/{id}")
+     @GetMapping(value = "/edit/{id}")
      public String editFlight(@PathVariable("id") Long id, Model model){
        Flight flight = flightService.getFlightById(id);
         if(flight != null){
             model.addAttribute("flight",flight);
              return "flight/edit";
          }
+
      return  "/safeairline/flight/list";
     }
 
-    @PostMapping("/safeairline/flight/edit")
-    public String saveEdit(Flight flight){
+    @PostMapping("/edit")
+    public String saveEdit(@Valid @ModelAttribute("flight") Flight flight,BindingResult result, Model model){
+
+        if (result.hasErrors()) {
+            model.addAttribute("errors", result.getAllErrors());
+            return  "flight/edit";
+        }
         flightService.saveFlight(flight);
         return "redirect:/safeairline/flight/list";
     }
 
-    @GetMapping("/safeairline/flight/search")
+    @GetMapping("/search")
     public String search(@RequestParam("searchCriteria") String searchCriteria, Model model){
         model.addAttribute("flights",flightService.getFlightBaseOnCriteria(searchCriteria));
 
