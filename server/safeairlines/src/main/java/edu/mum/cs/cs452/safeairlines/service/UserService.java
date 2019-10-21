@@ -4,7 +4,7 @@ import edu.mum.cs.cs452.safeairlines.model.User;
 
 public interface UserService {
 
-    User saveUser(User user);
+    User save(User user);
+    User checkExistingUser(String email);
 
-    User findUserByUserName(String username);
 }

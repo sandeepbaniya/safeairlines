@@ -1,23 +1,22 @@
 package edu.mum.cs.cs452.safeairlines.model;
 
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.List;
 
-@NoArgsConstructor
-@Data
 @Entity
-@Table(name = "role")
+@Data
+@NoArgsConstructor
 public class Role {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "role_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String roleType;
 
-    @Column(name = "role")
-    private String role;
+
+    @ManyToMany(mappedBy = "roles")
+    private List<User> users;
 }
