@@ -2,6 +2,7 @@ package edu.mum.cs.cs452.safeairlines.model;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -24,7 +25,10 @@ public class User {
     @Size(min=5,max = 15, message = "{Size.username}")
     private String username;
 
+    @Column(name = "first_name")
     private String firstName;
+
+    @Column(name="last_name")
     private String lastName;
 
     @Column(name="email")

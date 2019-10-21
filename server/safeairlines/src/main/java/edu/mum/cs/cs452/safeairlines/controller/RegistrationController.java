@@ -24,7 +24,7 @@ public class RegistrationController {
 
     @GetMapping("/registration")
     public String registration(@ModelAttribute User user){
-        return "pages/security/registration";
+        return "pages/security/register";
     }
 
     @PostMapping("/registration")
@@ -37,15 +37,15 @@ public class RegistrationController {
 
         }
         if (result.hasErrors()) {
-            return "pages/security/registration";
+            return "pages/security/register";
         }
         user.setRole((roleService.getById(user.getRole().getId())));
         userService.saveUser(user);
         if (user.getRole().getId()== SecurityConstants.ROLE_ADMIN)
-            model.addAttribute("successMessage", "Admin has been registered successfully! Please wait for admin approval");
+            model.addAttribute("successMessage", "Admin has been registered successfully!");
         else if (user.getRole().getId()== SecurityConstants.ROLE_BUYER)
             model.addAttribute("successMessage", "Buyer has been registered successfully");
         model.addAttribute("user", new User());
-        return "pages/security/registration";
+        return "pages/security/register";
     }
 }
