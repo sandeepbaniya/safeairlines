@@ -12,7 +12,7 @@ import java.util.List;
 @Entity
 @Data
 @NoArgsConstructor
-public abstract class User implements Serializable {
+public class User implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,15 +23,23 @@ public abstract class User implements Serializable {
     private String email;
     private String password;
 
+    private String phoneNumber;
+
+
+    private Integer passportNumber;
+
     @ManyToMany
     @JoinTable
     private List<Role> roles;
 
-    public User(String firstName, String lastName, String email, String password, List<Role> roles) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.password = password;
-        this.roles = roles;
-    }
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
+    private List<Payment> payments;
+
+    @OneToMany
+    @JoinTable(name = "feedback")
+    private List<Feedback> feedBacks;
+
+
+
 }

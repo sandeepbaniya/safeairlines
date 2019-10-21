@@ -20,5 +20,5 @@ public class Payment {
     private LocalDate payDate;
 
     @ManyToOne
-    private Passenger passenger;
+    private User user;
 }

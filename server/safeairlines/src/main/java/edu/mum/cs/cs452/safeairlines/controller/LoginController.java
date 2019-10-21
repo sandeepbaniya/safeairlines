@@ -1,7 +1,7 @@
 package edu.mum.cs.cs452.safeairlines.controller;
 
-import edu.mum.cs.cs452.safeairlines.model.Passenger;
-import edu.mum.cs.cs452.safeairlines.service.PassengerService;
+import edu.mum.cs.cs452.safeairlines.model.User;
+import edu.mum.cs.cs452.safeairlines.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,18 +17,18 @@ import javax.validation.Valid;
 public class LoginController {
 
     @Autowired
-    PassengerService passengerService;
+    UserService userService;
 
     @GetMapping("/login")
-    public String getLoginForm(@ModelAttribute("passenger") Passenger passenger) {
-        return "login";
+    public String getLoginForm(@ModelAttribute("passenger") User user) {
+        return "public/login";
     }
 
     @PostMapping("/login")
-    public String login(@Valid @ModelAttribute("newPassenger") Passenger passenger, Model model) {
-        Passenger p = passengerService.checkExistingPassenger(passenger.getEmail());
-        if (p != null) {
-            model.addAttribute("passenger", p);
+    public String login(@Valid @ModelAttribute("newPassenger") User user, Model model) {
+        User u = userService.checkExistingUser(user.getEmail());
+        if (u != null) {
+            model.addAttribute("user", u);
 
             return "public/home";
         }
