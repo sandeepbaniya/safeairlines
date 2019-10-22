@@ -12,9 +12,10 @@
 
 <!-- Page Content -->
   <div class="container">
-<!--    <h1 class="mt-4 mb-3"> <small><span th:text="#{flight.form.add}">Add Flight</span>-->
-<!--    </small>-->
-<!--    </h1>-->
+
+      <nav class="navbar navbar-light bg-light justify-content-between">
+          <a class="navbar-brand"> <span th:text="#{flight.form.add}">Add Filght.</span></a>
+      </nav>
 
     <ol class="breadcrumb">
       <li class="breadcrumb-item">
@@ -24,7 +25,7 @@
     </ol>
 
     <div class="jumbotron">
-      <form id="newFlight" name="" method="post" action="/safeairline/flight/new" th:object="${flight}" methode="post">
+      <form id="newFlight" name="" method="post" action="/admin/flight/new" th:object="${flight}" methode="post">
               <div class="form-row">
                 <div class="form-group col-md-6">
                   <label for="inputFlightNum">Flight Number</label>
@@ -62,12 +63,18 @@
               <div class="form-row">
                 <div class="form-group col-md-6">
                   <label for="inputDeparturePlace">Departure Place </label>
-                  <input type="text" th:field="*{depaturePlace}" class="form-control" id="inputDeparturePlace">
+                    <select id="inputDeparturePlace" th:field="*{depaturePlace}" class="form-control">
+                        <option value="">Select an Aiport </option>
+                        <option th:each="airport:${aiports}" th:value="${airport.id}" th:text="${airport.name} + ${airport.description}"></option>
+                    </select>
                   <span th:if="${#fields.hasErrors('depaturePlace')}" th:errors="*{depaturePlace}" class="text-danger"></span>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="inputArrivalPlace">Arrival Place</label>
-                    <input type="text" th:field="*{arrivalPlace}" class="form-control" id="inputArrivalPlace">
+                    <select id="inputArrivalPlace" th:field="*{arrivalPlace}" class="form-control">
+                        <option value="">Select an Aiport </option>
+                        <option th:each="airport:${aiports}" th:value="${airport.id}" th:text="${airport.name} + ${airport.description}"></option>
+                    </select>
                     <span th:if="${#fields.hasErrors('arrivalPlace')}" th:errors="*{arrivalPlace}" class="text-danger"></span>
                 </div>
                 <!-- <div class="form-group col-md-2">
