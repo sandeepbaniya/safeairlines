@@ -22,10 +22,12 @@ public class UserServiceImpl implements UserService {
         User user1 = checkExistingUser(user.getEmail());
         if (user1 != null) {
             System.out.println("display User");
-          return   userRepository.save(user);
+
         }
 
-        return  null;
+        return   userRepository.save(user);
+
+//        return  null;
     }
 
     public User checkExistingUser(String email) {
