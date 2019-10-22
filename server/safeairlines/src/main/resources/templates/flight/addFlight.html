@@ -82,8 +82,8 @@
   <div class="container">
 
     <!-- Page Heading/Breadcrumbs -->
-    <h1 class="mt-4 mb-3">Add
-      <small> Flight</small>
+    <h1 class="mt-4 mb-3"> <small><span th:text="#{flight.form.add}">Add Flight</span>
+       </small>
     </h1>
 
     <ol class="breadcrumb">
@@ -101,11 +101,12 @@
                 <div class="form-group col-md-6">
                   <label for="inputFlightNum">Flight Number</label>
                     <input type="text" th:field="*{flightNumber}" class="form-control" id= "inputFlightNum" placeholder="Flight Number" name="flightNumber">
-
+                  <span th:if="${#fields.hasErrors('flightNumber')}" th:errors="*{flightNumber}" class="text-danger"></span>
                 </div>
                 <div class="form-group col-md-6">
                   <label for="inputPlaneNum">Plane Number</label>
                   <input type="text" th:field="*{planeNumber}" class="form-control" id="inputPlaneNum" placeholder="Plane Number">
+                  <span th:if="${#fields.hasErrors('planeNumber')}" th:errors="*{planeNumber}" class="text-danger"></span>
                 </div>
               </div>
               <!-- <div class="form-group">
@@ -120,6 +121,7 @@
                   <div class="form-group col-md-4">
                     <label for="inputDepartureDate">Departure Date </label>
                       <input type="date" th:field="*{deptDate}" class="form-control" id="inputDepartureDate" placeholder="Arrival Date">
+                      <span th:if="${#fields.hasErrors('deptDate')}" th:errors="*{deptDate}" class="text-danger"></span>
                   </div>
                   <div class="form-group col-md-2">
 <!--                      <label for="inputDepartureTime">Departure Time</label>-->
@@ -129,6 +131,7 @@
                   <div class="form-group col-md-4">
                     <label for="inputArrivalDate">Arrival Date </label>
                     <input type="date" th:field="*{arrivalDate}" class="form-control" id="inputArrivalDate" placeholder="Arrival Date">
+                    <span th:if="${#fields.hasErrors('arrivalDate')}" th:errors="*{arrivalDate}" class="text-danger"></span>
                   </div>
                   <div class="form-group col-md-2">
 <!--                      <label for="inputArrivalTime">Arrival Time</label>-->
@@ -139,10 +142,12 @@
                 <div class="form-group col-md-6">
                   <label for="inputDeparturePlace">Departure Place </label>
                   <input type="text" th:field="*{depaturePlace}" class="form-control" id="inputDeparturePlace">
+                  <span th:if="${#fields.hasErrors('depaturePlace')}" th:errors="*{depaturePlace}" class="text-danger"></span>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="inputArrivalPlace">Arrival Place</label>
                     <input type="text" th:field="*{arrivalPlace}" class="form-control" id="inputArrivalPlace">
+                    <span th:if="${#fields.hasErrors('arrivalPlace')}" th:errors="*{arrivalPlace}" class="text-danger"></span>
                 </div>
                 <!-- <div class="form-group col-md-2">
                   <label for="inputState">State</label>
@@ -154,10 +159,12 @@
                 <div class="form-group col-md-2">
                   <label for="inputPrice">Price for this Flight </label>
                   <input type="text"  th:field="*{price}"  class="form-control" id="inputPrice">
+                  <span th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="text-danger"></span>
                 </div>
                 <div class="form-group col-md-2">
                     <label for="inputNumSeat">Number of seats </label>
                     <input type="text" th:field="*{numbSeat}"  class="form-control" id="inputNumSeat">
+                  <span th:if="${#fields.hasErrors('numbSeat')}" th:errors="*{numbSeat}" class="text-danger"></span>
                   </div>
               </div>
               <!-- <div class="form-group">
