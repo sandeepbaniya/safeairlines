@@ -57,14 +57,14 @@
 
                     <div class="tab-pane fade show active" id="v-pills-1" role="tabpanel"
                          aria-labelledby="v-pills-nextgen-tab">
-                        <form action="#" class="search-destination">
+                        <form th:action="@{/fligths/search}" class="search-destination" th:method="POST">
                             <div class="row">
                                 <div class="col-md align-items-end">
                                     <div class="form-group">
                                         <label for="#">From</label>
                                         <div class="form-field">
                                             <div class="icon"><i class="fas fa-plane-departure"></i></div>
-                                            <input type="text" class="form-control" placeholder="From">
+                                            <input type="text" class="form-control" placeholder="From" th:name="from" name="from">
                                         </div>
                                     </div>
                                 </div>
@@ -73,7 +73,7 @@
                                         <label for="#">Where</label>
                                         <div class="form-field">
                                             <div class="icon"><i class="fas fa-plane-arrival"></i></span></div>
-                                            <input type="text" class="form-control" placeholder="Where">
+                                            <input type="text" class="form-control" placeholder="Where" th:name="where">
                                         </div>
                                     </div>
                                 </div>
@@ -82,7 +82,7 @@
                                         <label for="#">Check In</label>
                                         <div class="form-field">
                                             <div class="icon"><i class="fas fa-check-double"></i></div>
-                                            <input type="text" class="form-control checkin_date" placeholder="Check In">
+                                            <input type="text" class="form-control checkin_date" placeholder="Check In" th:name="checkIn">
                                         </div>
                                     </div>
                                 </div>
@@ -91,7 +91,7 @@
                                         <label for="#">Check Out</label>
                                         <div class="form-field">
                                             <div class="icon"><i class="fas fa-check-double"></i></div>
-                                            <input type="text" class="form-control checkout_date" placeholder="From">
+                                            <input type="text" class="form-control checkout_date" placeholder="From" th:name="from">
                                         </div>
                                     </div>
                                 </div>
@@ -100,8 +100,8 @@
                                         <label for="#">Travelers</label>
                                         <div class="form-field">
                                             <div class="select-wrap">
-                                                <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                                                <select name="" id="" class="form-control">
+                                                <div class="icon"><span class="ion-ios-arrow-down" ></span></div>
+                                                <select th:name="travelers"  class="form-control" >
                                                     <option value="">1</option>
                                                     <option value="">2</option>
                                                     <option value="">3</option>

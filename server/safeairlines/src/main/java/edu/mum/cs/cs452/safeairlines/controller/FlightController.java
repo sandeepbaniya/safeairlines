@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.util.Date;
+import java.util.List;
 
 
 @Controller
@@ -87,11 +89,6 @@ public class FlightController {
         return "redirect:/admin/flight/list";
     }
 
-    @GetMapping("/search")
-    public String search(@RequestParam("searchCriteria") String searchCriteria, Model model){
-        model.addAttribute("flights",flightService.getFlightBaseOnCriteria(searchCriteria));
 
-        return "flight/listFlight";
-    }
 
 }
