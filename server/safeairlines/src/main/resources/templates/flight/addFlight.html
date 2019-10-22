@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="~{layout/main_layout}"
-      xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5" layout:decorate="~{layout/main_layout}"
+      xmlns="http://www.w3.org/1999/html">
 <head>
-    <link th:href="@{/css/bootstrap.min.css}" href="/css/bootstrap.min.css" rel="stylesheet">
-  <title>Add Flight</title>
+    <title>Safe Airline- New</title>
 </head>
 <body>
-<div id="main-content" layout:fragment="main-content">
+<div layout:fragment="content" >
 
 
 
@@ -103,7 +103,7 @@
     <!-- /.jumbotron -->
 </div>
 
-
+<th:block layout:fragment="footer"></th:block>
   <!-- /.container -->
 
 </body>

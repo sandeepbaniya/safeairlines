@@ -49,9 +49,17 @@ public class WebApplicationContextConfig implements WebMvcConfigurer {
             registry.addResourceHandler("/images/**").addResourceLocations("classpath:/static/images/");
         }
 
+        if (!registry.hasMappingForPattern("/flight/images/**")) {
+            registry.addResourceHandler("/images/**").addResourceLocations("classpath:/static/images/");
+        }
 
     }
 
+
+//    @Override
+//    public void addResourceHandlers(final ResourceHandlerRegistry registry) {
+//        registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
+//    }
 
     @Bean
     public LocaleResolver localeResolver() {
