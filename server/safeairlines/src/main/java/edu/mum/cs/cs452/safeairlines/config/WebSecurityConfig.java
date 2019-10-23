@@ -43,19 +43,22 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/resources/static/js/**","/js/**");
+        web.ignoring().antMatchers("/resources/static/js/**", "/js/**");
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-        http
+        http    .csrf().disable()
                 .headers()
                 .frameOptions().sameOrigin()
                 .and()
                 .authorizeRequests()
-                .antMatchers("/resources/static/**", "/images/**", "/css/**", "/public/**", "/**", "/index", "/flight/search","/admin/**","/flights/**").permitAll()
+                  .antMatchers("/resources/static/**", "/images/**", "/css/**", "/public/**", "/", "/index", "/flights/search").permitAll()
+                .antMatchers("/admin/**", "/admin/airport/new").hasAuthority("ADMIN")
+
                 .anyRequest().authenticated()
+
                 .and()
                 .formLogin()
                 .loginPage("/login")
@@ -72,7 +75,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .exceptionHandling();
 
+
     }
+
+
 
 
 }
