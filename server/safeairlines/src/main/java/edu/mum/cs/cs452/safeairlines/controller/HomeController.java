@@ -56,8 +56,5 @@ public class HomeController {
     }
 
 
-    @GetMapping("/flight/search")
-    public String getFindFlightsPage(){
-        return "public/findFlights";
-    }
+
 }
