@@ -15,5 +15,10 @@ public class HomeController {
     public String getUsers(){
         return "users";
     }
+
+
+    @GetMapping("/flight/search")
+    public String getFindFlightsPage(){
+        return "public/findFlights";
+    }
 }
-//comment volcy

@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<html lang="en"  xmlns:th="http://www.thymeleaf.org">
-  <head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
     <title>SafeAirlines Login</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
 
 
     <link rel="stylesheet" th:href="@{/css/open-iconic-bootstrap.min.css}">
@@ -22,124 +21,87 @@
     <link rel="stylesheet" th:href="@{/css/style.css}">
     <link rel="stylesheet" th:href="@{/css/icomoon.css}">
 
-  </head>
-  <body>
+</head>
+<body>
 
-	  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-	    <div class="container">
-	      <a class="navbar-brand" href="index.html">Adventure</a>
-	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-	        <span class="oi oi-menu"></span> Menu
-	      </button>
+<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+    <div class="container">
+        <a class="navbar-brand" href="index.html">Adventure</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
+                aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="oi oi-menu"></span> Menu
+        </button>
 
-	      <div class="collapse navbar-collapse" id="ftco-nav">
-	        <ul class="navbar-nav ml-auto">
-	          <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
-	          <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
-	          <li class="nav-item"><a href="places.html" class="nav-link">Places</a></li>
-	          <li class="nav-item"><a href="hotel.html" class="nav-link">Hotels</a></li>
-	          <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
-	          <li class="nav-item active"><a href="contact.html" class="nav-link">Contact</a></li>
-	        </ul>
-	      </div>
-	    </div>
-	  </nav>
-    <!-- END nav -->
+        <div class="collapse navbar-collapse" id="ftco-nav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="places.html" class="nav-link">Places</a></li>
+                <li class="nav-item"><a href="hotel.html" class="nav-link">Hotels</a></li>
+                <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
+                <li class="nav-item active"><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- END nav -->
 
-     <h1></h1>
+<h1></h1>
 
- <div class="w3_frm">
+<div class="w3_frm">
 
-  <form th:action="@{/user/login}" th:object="${passenger}" method="post">
-      <h3>Login Form</h3>
+    <form th:action="@{/login}" method="post">
+        <h3>Login Form</h3>
 
-      <div class="field-w3-agile-grid leftf">
-        <input type="text" name="email" placeholder="Email" required="" />
-      </div>
+        <div th:if="${param.error}" class="alert alert-dismissible alert-danger">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            Invalid username and/or password.
+        </div>
+        <div th:if="${param.logout}" class="alert alert-dismissible alert-primary">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            You have been signed out.
+        </div>
 
-      <div class="field-w3-agile-grid leftf">
-        <input type="text" name="password" placeholder="Password" required="" />
-      </div>
+        <div class="field-w3-agile-grid leftf">
+            <input type="text" name="email" placeholder="Email" required=""/>
+        </div>
+
+        <div class="field-w3-agile-grid leftf">
+            <input type="password" name="password" placeholder="Password" required=""/>
+        </div>
 
 
-      <input type="submit" value="LOGIN">
+        <input type="submit" value="LOGIN">
     </form>
 
 
-  </div>
+</div>
 
 
+<!--&lt;!&ndash; loader &ndash;&gt;-->
+<!--<div id="ftco-loader" class="show fullscreen">-->
+<!--    <svg class="circular" width="48px" height="48px">-->
+<!--        <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/>-->
+<!--        <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"-->
+<!--                stroke="#F96D00"/>-->
+<!--    </svg>-->
+<!--</div>-->
 
 
-<!--    <footer class="ftco-footer ftco-bg-dark ftco-section">-->
-<!--      <div class="container">-->
-<!--        <div class="row mb-5">-->
-<!--          <div class="col-md">-->
-<!--            <div class="ftco-footer-widget mb-4">-->
-<!--              <h2 class="ftco-heading-2">Adventure</h2>-->
-<!--              <p></p>-->
-<!--              <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-3">-->
-<!--                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>-->
+<script th:src="@{/js/jquery.min.js}"></script>
+<script th:src="@{/js/jquery-migrate-3.0.1.min.js}"></script>
+<script th:src="@{/js/popper.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/jquery.easing.1.3.js}"></script>
+<script th:src="@{/js/jquery.waypoints.min.js}"></script>
+<script th:src="@{/js/jquery.stellar.min.js}"></script>
+<script th:src="@{/js/owl.carousel.min.js}"></script>
+<script th:src="@{/js/jquery.magnific-popup.min.js}"></script>
+<script th:src="@{/js/aos.js}"></script>
+<script th:src="@{/js/jquery.animateNumber.min.js}"></script>
+<script th:src="@{/js/bootstrap-datepicker.js}"></script>
+<script th:src="@{/js/scrollax.min.js}"></script>
+<script th:src="@{/js/main.js}"></script>
 
-<!--              </ul>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--          <div class="col-md">-->
-<!--            <div class="ftco-footer-widget mb-4 ml-md-4">-->
-<!--              <h2 class="ftco-heading-2">Information</h2>-->
-<!--              <ul class="list-unstyled">-->
-<!--                <li><a href="#" class="py-2 d-block">About Us</a></li>-->
-
-
-<!--              </ul>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--          <div class="col-md">-->
-<!--             <div class="ftco-footer-widget mb-4">-->
-<!--              <h2 class="ftco-heading-2">Experience</h2>-->
-<!--              <ul class="list-unstyled">-->
-<!--                <li><a href="#" class="py-2 d-block">Beach</a></li>-->
-
-
-<!--              </ul>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--          <div class="col-md">-->
-<!--            <div class="ftco-footer-widget mb-4">-->
-<!--            	<h2 class="ftco-heading-2">Have a Questions?</h2>-->
-<!--            	<div class="block-23 mb-3">-->
-<!--	              <ul>-->
-<!--	                <li><span class="icon icon-map-marker"></span><span class="text">203 Fake St. Mountain View, San Francisco, California, USA</span></li>-->
-
-<!--	              </ul>-->
-<!--	            </div>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-
-<!--      </div>-->
-<!--    </footer>-->
-
-
-
-  <!-- loader -->
-  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
-
-
-  <script th:src="@{/js/jquery.min.js}"></script>
-  <script th:src="@{/js/jquery-migrate-3.0.1.min.js}"></script>
-  <script th:src="@{/js/popper.min.js}"></script>
-  <script th:src="@{/js/bootstrap.min.js}"></script>
-  <script th:src="@{/js/jquery.easing.1.3.js}"></script>
-  <script th:src="@{/js/jquery.waypoints.min.js}"></script>
-  <script th:src="@{/js/jquery.stellar.min.js}"></script>
-  <script th:src="@{/js/owl.carousel.min.js}"></script>
-  <script th:src="@{/js/jquery.magnific-popup.min.js}"></script>
-  <script th:src="@{/js/aos.js}"></script>
-  <script th:src="@{/js/jquery.animateNumber.min.js}"></script>
-  <script th:src="@{/js/bootstrap-datepicker.js}"></script>
-  <script th:src="@{/js/scrollax.min.js}"></script>
-  <script th:src="@{/js/main.js}"></script>
-
-  </body>
+</body>
 </html>
