@@ -1,0 +1,45 @@
+<header th:fragment="header" xmlns:th="http://www.thymeleaf.org"
+        xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5" xmlns="http://www.w3.org/1999/html">
+
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+        <div class="container">
+            <a class="navbar-brand" th:href="@{/}">
+                <img th:src="@{/images/logo.png}" height="40px">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
+                    aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="oi oi-menu">  </span> Menu
+            </button>
+
+            <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active"><a th:href="@{/}" class="nav-link">Home</a></li>
+
+                    <li sec:authorize="isAuthenticated()" class="nav-item"><a href="#" class="nav-link">My Bookings</a></li>
+
+
+                    <form class="form-inline my-2 my-lg-0">
+                        <span sec:authorize="isAnonymous()" style="color:#fff;padding-left: 2em; padding-right: 1em;">Welcome, Guest</span>
+                        <span sec:authorize="isAuthenticated()"
+                              style="color:#fff;padding-left: 0em; padding-right: 0.5em;">Welcome, </span><span
+                            sec:authorize="isAuthenticated()"
+                            style="color:#fff;padding-left: 0em; padding-right: 0.5em;"
+                            sec:authentication="principal.username"></span>
+                        <a sec:authorize="isAnonymous()" href="/login" class="btn btn-secondary">Sign In</a>
+                        <a sec:authorize="isAuthenticated()" href="/public/logout" class="btn btn-secondary">Sign
+                            Out</a>
+                    </form>
+
+
+                </ul>
+            </div>
+            <!--            <form class="form-inline my-2 my-lg-0">-->
+            <!--                <span sec:authorize="isAnonymous()" style="color:#fff;padding-left: 2em; padding-right: 1em;">Welcome, Guest</span>-->
+            <!--                <span sec:authorize="isAuthenticated()" style="color:#fff;padding-left: 0em; padding-right: 0.5em;">Welcome, </span><span sec:authorize="isAuthenticated()" style="color:#fff;padding-left: 0em; padding-right: 0.5em;" sec:authentication="principal.username"></span>-->
+            <!--                <a sec:authorize="isAnonymous()" href="/elibrary/public/login" class="btn btn-secondary">Sign In</a>-->
+            <!--                <a sec:authorize="isAuthenticated()" href="/elibrary/public/logout" class="btn btn-secondary">Sign Out</a>-->
+            <!--            </form>-->
+
+        </div>
+    </nav>
+</header>
