@@ -14,22 +14,10 @@
             <div class="collapse navbar-collapse" id="ftco-nav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active"><a th:href="@{/}" class="nav-link">Home</a></li>
-
-
                     <li sec:authorize="isAuthenticated()" class="nav-item"><a href="#" class="nav-link">My Bookings</a></li>
 
 
-                    <form class="form-inline my-2 my-lg-0">
-                        <span sec:authorize="isAnonymous()" style="color:#fff;padding-left: 2em; padding-right: 1em;">Welcome, Guest</span>
-                        <span sec:authorize="isAuthenticated()"
-                              style="color:#fff;padding-left: 0em; padding-right: 0.5em;">Welcome, </span><span
-                            sec:authorize="isAuthenticated()"
-                            style="color:#fff;padding-left: 0em; padding-right: 0.5em;"
-                            sec:authentication="principal.username"></span>
-                        <a sec:authorize="isAnonymous()" href="/login" class="btn btn-secondary">Sign In</a>
-                        <a sec:authorize="isAuthenticated()" href="/public/logout" class="btn btn-secondary">Sign
-                            Out</a>
-                    </form>
+
 
 
 
@@ -38,6 +26,19 @@
                     <li class="nav-item"><a href="#" class="nav-link">Hotels</a></li>
                     <li class="nav-item"><a href="#" class="nav-link">Blog</a></li>
                     <li class="nav-item"><a href="#" class="nav-link">Contact</a></li>
+                    <li>
+
+                        <form class="form-inline my-2 my-lg-0">
+                            <span sec:authorize="isAnonymous()" style="color:#fff;padding-left: 2em; padding-right: 1em;">Welcome, Guest</span>
+                            <span sec:authorize="isAuthenticated()"style="color:#fff;padding-left: 0em; padding-right: 0.5em;">Welcome, </span><span sec:authorize="isAuthenticated()" style="color:#fff;padding-left: 0em; padding-right: 0.5em;"
+                                sec:authentication="principal.username"></span>
+                            <a sec:authorize="isAnonymous()" href="/login" class="btn btn-secondary">Sign In</a>
+                            <a sec:authorize="isAuthenticated()" href="/public/logout" class="btn btn-secondary">Sign Out</a>
+                        </form>
+
+
+
+                    </li>
                     <li class="nav-item"><a href="#" class="nav-link">
                         <img th:src="@{/images/fr.svg}"height="20px">
                     </a></li>
