@@ -36,7 +36,7 @@ public class HomeController {
                                         @RequestParam("deptDate") String deptDate,
                                         @RequestParam("returnDate") String returnDate, Model model, RedirectAttributes attributes){
         //Test for empty value
-        if(from==null || where==null || deptDate==null || returnDate == null){
+        if(from==null || where==null || deptDate==null || returnDate == null || deptDate.equals("")|| returnDate.equals("") ){
             attributes.addFlashAttribute("messages","Fill all the form properly");
 
             return "redirect:/";
