@@ -4,6 +4,26 @@
       xmlns="http://www.w3.org/1999/html">
 <head>
     <title>Safe Airline- Home</title>
+    <style>
+        label {
+            font-size: 1.3em;
+        }
+
+        input[type=radio] {
+            width: 20px !important;
+            height: 19px !important;
+        }
+    </style>
+    <script>
+        function tripWay(val) {
+            var x = document.querySelector("#return")
+            if (val === 2) {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+            }
+        }
+    </script>
 </head>
 <body>
     <div layout:fragment="content" >
@@ -81,7 +101,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md align-items-end">
+                                        <div class="col-md align-items-end" id="return">
                                             <div class="form-group">
                                                 <label for="returnDate">Return Date</label>
                                                 <div class="form-field">
@@ -114,6 +134,22 @@
                                                 </div>
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="row text-center">
+                                        <div class="col-4"></div>
+                                        <div class="form-check col">
+                                            <input class="form-check-input" type="radio" name="way_type" id="one" value="one" onclick="tripWay(1)">
+                                            <label class="form-check-label" for="one">
+                                                One way
+                                            </label>
+                                        </div>
+                                        <div class="form-check col">
+                                            <input class="form-check-input" type="radio" name="way_type" id="two" value="two" onclick="tripWay(2)">
+                                            <label class="form-check-label" for="two">
+                                                Round trip
+                                            </label>
+                                        </div>
+                                        <div class="col-4"></div>
                                     </div>
                                 </form>
                             </div>
