@@ -1,8 +1,11 @@
 package edu.mum.cs.cs452.safeairlines.controller;
 
 
+import edu.mum.cs.cs452.safeairlines.model.Role;
 import edu.mum.cs.cs452.safeairlines.model.User;
+import edu.mum.cs.cs452.safeairlines.service.RoleService;
 import edu.mum.cs.cs452.safeairlines.service.UserService;
+import net.bytebuddy.asm.Advice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +24,9 @@ public class SignupController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    RoleService roleService;
+
     @GetMapping("/signup")
     public String getSignupForm(@ModelAttribute("newUser") User user) {
         return "public/signup";
@@ -34,7 +40,12 @@ public class SignupController {
 
             return "public/signup";
         }
+
+        Role role = roleService.getRoleById(1l);
+        System.out.println("=================> " + role.getRoleType());
+        user.addRole(role);
         userService.save(user);
+
         return "redirect:/login";
     }
 

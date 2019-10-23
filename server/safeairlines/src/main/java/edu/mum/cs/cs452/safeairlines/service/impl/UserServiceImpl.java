@@ -6,8 +6,6 @@ import edu.mum.cs.cs452.safeairlines.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -16,8 +14,7 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     UserRepository userRepository;
-    @Autowired
-    private JavaMailSender javaMailSender;
+
 
     @Override
     public User save(User user) {
@@ -36,29 +33,4 @@ public class UserServiceImpl implements UserService {
     public User checkExistingUser(String email) {
         return userRepository.getByEmail(email);
     }
-
-    @Override
-    public void sendNotificationRegisterUser(User user) {
-        SimpleMailMessage mail = new SimpleMailMessage();
-        mail.setTo(user.getEmail());
-        mail.setFrom("safeairlines77@gmail.com");
-        mail.setSubject("Subscribe");
-        mail.setText("Thank you for your registration, you make a good choice! ");
-
-        javaMailSender.send(mail);
-    }
-
-    @Override
-    public void sendNotficationRegisterFlight(User user) {
-        SimpleMailMessage mail = new SimpleMailMessage();
-        mail.setTo(user.getEmail());
-        mail.setFrom("safeairlines77@gmail.com");
-        mail.setSubject("Flight Registration");
-        String msg ="Flight Number is :"+user.getEmail(); //test flight not yet register !!
-        mail.setText(msg);
-
-        javaMailSender.send(mail);
-    }
-
-
 }

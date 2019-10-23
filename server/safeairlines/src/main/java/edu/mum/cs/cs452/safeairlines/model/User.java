@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -29,8 +30,10 @@ public class User implements Serializable {
     private Integer passportNumber;
 
     @ManyToMany
-    @JoinTable
-    private List<Role> roles;
+    @JoinTable(name = "users_roles",
+            joinColumns = {@JoinColumn(name = "USER_ID", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "ROLE_ID", referencedColumnName = "id")})
+    private List<Role> roles = new ArrayList<>();
 
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
@@ -40,6 +43,8 @@ public class User implements Serializable {
     @JoinTable(name = "feedback")
     private List<Feedback> feedBacks;
 
-
+    public void addRole(Role role) {
+        this.roles.add(role);
+    }
 
 }
