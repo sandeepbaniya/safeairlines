@@ -33,4 +33,14 @@ public class UserServiceImpl implements UserService {
     public User checkExistingUser(String email) {
         return userRepository.getByEmail(email);
     }
+
+    @Override
+    public void sendNotificationRegisterUser(User user) {
+
+    }
+
+    @Override
+    public void sendNotficationRegisterFlight(User user) {
+
+    }
 }

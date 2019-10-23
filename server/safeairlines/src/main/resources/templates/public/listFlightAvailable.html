@@ -72,8 +72,8 @@
                 </div>
                 </a>
                 </div>
-                <form th:action="@{/flights/booking}" >
-                    <input type="hidden" name="bookingId" th:value="${flight.id}">
+                <form th:action="@{/user/booking/checkInfo}" >
+                    <input type="hidden" name="flightId" th:value="${flight.id}">
                     <button class="btn btn-success" type="submit" name="SELECT"><span th:text="${'$'}+${flight.price}">SELECT $380</span></button>
                 </form>
 
