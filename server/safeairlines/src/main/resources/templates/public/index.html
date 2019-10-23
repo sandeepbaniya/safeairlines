@@ -46,51 +46,58 @@
 
                             <div class="tab-pane fade show active" id="v-pills-1" role="tabpanel"
                                  aria-labelledby="v-pills-nextgen-tab">
-                                <form action="#" class="search-destination">
+                                <form th:action="@{/flights/search}" class="search-destination" th:object="${airports}" method="get">
                                     <div class="row">
                                         <div class="col-md align-items-end">
                                             <div class="form-group">
-                                                <label for="#">From</label>
+                                                <label for="from">From</label>
                                                 <div class="form-field">
                                                     <div class="icon"><span class="icon-my_location"></span></div>
-                                                    <input type="text" class="form-control" placeholder="From">
+
+                                                    <select id="from"  name="from" class="form-control">
+                                                        <option value="">Select an Aiport </option>
+                                                        <option th:each="airport:${airports}" th:value="${airport.id}" th:text="${airport.name} + ${' '}+  ${airport.description}"></option>
+                                                    </select>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-md align-items-end">
                                             <div class="form-group">
-                                                <label for="#">Where</label>
+                                                <label for="where">Where</label>
                                                 <div class="form-field">
                                                     <div class="icon"><span class="icon-map-marker"></span></div>
-                                                    <input type="text" class="form-control" placeholder="Where">
+                                                    <select id="where"  name="where" class="form-control">
+                                                        <option value="">Select an Aiport </option>
+                                                        <option th:each="airport:${airports}" th:value="${airport.id}" th:text="${airport.name} + ${' '}+ ${airport.description}"></option>
+                                                    </select>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-md align-items-end">
                                             <div class="form-group">
-                                                <label for="#">Check In</label>
+                                                <label for="deptDate">Departure Date</label>
                                                 <div class="form-field">
                                                     <div class="icon"><span class="icon-map-marker"></span></div>
-                                                    <input type="text" class="form-control checkin_date" placeholder="Check In">
+                                                    <input type="text" class="form-control checkin_date" placeholder="Departur Date" name="deptDate" id="deptDate">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-md align-items-end">
                                             <div class="form-group">
-                                                <label for="#">Check Out</label>
+                                                <label for="returnDate">Return Date</label>
                                                 <div class="form-field">
                                                     <div class="icon"><span class="icon-map-marker"></span></div>
-                                                    <input type="text" class="form-control checkout_date" placeholder="From">
+                                                    <input type="text" class="form-control checkout_date" placeholder="Return Date" name="returnDate" id="returnDate">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-md align-items-end">
                                             <div class="form-group">
-                                                <label for="#">Travelers</label>
+                                                <label for="travels">Travelers</label>
                                                 <div class="form-field">
                                                     <div class="select-wrap">
                                                         <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                                                        <select name="" id="" class="form-control">
+                                                        <select name="travels" id="travels" class="form-control">
                                                             <option value="">1</option>
                                                             <option value="">2</option>
                                                             <option value="">3</option>
@@ -204,8 +211,12 @@
                         </div>
                     </div>
                 </div>
+
             </div>
+
         </section>
+
+    </br>
  </div>
 
 <!--include the footer right here -->

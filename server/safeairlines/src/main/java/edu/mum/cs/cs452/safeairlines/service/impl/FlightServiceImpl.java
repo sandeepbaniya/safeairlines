@@ -6,6 +6,8 @@ import edu.mum.cs.cs452.safeairlines.service.FlightService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -41,7 +43,23 @@ public class FlightServiceImpl implements FlightService {
 
     @Override
     public List<Flight> getFlightBaseOnCriteria(String chain) {
-        return flightRepository.findAllByFlightNumberContainingOrPlaneNumberContainingOrDepaturePlaceContainingOrArrivalPlaceContains(chain,chain,chain,chain);
+        //return flightRepository.findAllByFlightNumberContainingOrPlaneNumberContainingOrDepaturePlaceContainingOrArrivalPlaceContains(chain,chain,chain,chain);
+        return flightRepository.findAllByFlightNumberContainingAndPlaneNumberContaining(chain,chain);
+    }
+
+    @Override
+    public List<Flight> listFlightForBooking(LocalDate depDate, LocalDate returnDate, Long depPlace, Long ArrivPlace) {
+
+        List<Flight> flights = flightRepository.findAll();
+        List<Flight> result = new ArrayList<>();
+        for(Flight flight : flights){
+            if(flight.getDeptDate().equals(depDate)
+            && flight.getDepaturePlace().getId()==depPlace&& flight.getArrivalPlace().getId()==ArrivPlace){
+                result.add(flight);
+            }
+         }
+
+        return result;
     }
 
 

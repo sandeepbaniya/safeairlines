@@ -22,7 +22,7 @@
 
     <ol class="breadcrumb">
       <li class="breadcrumb-item">
-        <a href="index.html">Home</a>
+        <a href="/home">Home</a>
       </li>
       <li class="breadcrumb-item active">list </li>
 
@@ -44,7 +44,6 @@
         </thead>
         <tbody>
         <tr th:each="flight,iterStat : ${flights}">
-          <!--th:onclick="@{document.location='/elibrary/book/edit/{bookId}'(bookId=${book.bookId})}" -->
           <th scope="row" th:text="${iterStat.count}"></th>
           <td th:text="${flight.flightNumber}"></td>
           <td th:text="${flight.planeNumber}"></td>
@@ -60,6 +59,7 @@
         </tr>
         </tbody>
       </table>
+      <a href="/admin/flight/new">New Flight</a>
  </div>
     <!-- /.jumbotron -->
   </div>
