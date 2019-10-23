@@ -6,5 +6,7 @@ public interface UserService {
 
     User save(User user);
     User checkExistingUser(String email);
+    void sendNotificationRegisterUser(User user);
+    void sendNotficationRegisterFlight(User user);
 
 }
