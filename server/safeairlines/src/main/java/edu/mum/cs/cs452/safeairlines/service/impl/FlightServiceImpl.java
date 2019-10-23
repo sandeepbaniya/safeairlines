@@ -61,6 +61,4 @@ public class FlightServiceImpl implements FlightService {
 
         return result;
     }
-
-
 }

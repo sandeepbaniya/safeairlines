@@ -12,7 +12,4 @@ public interface FlightRepository extends JpaRepository<Flight,Long> {
                                                                                                                    String depaturPlace,
                                                                                                                        String arrivalPlace);
    List<Flight> findAllByFlightNumberContainingAndPlaneNumberContaining(String chain1,String chain2);
-
-
-
 }
