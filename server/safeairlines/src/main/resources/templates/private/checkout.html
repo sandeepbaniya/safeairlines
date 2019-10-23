@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5" layout:decorate="~{layout/main_layout}"
+      xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>Safe Airline- List</title>
+    <link rel="stylesheet" th:href="@{/css/checkout-style.css}">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <script th:src="@{https://kit.fontawesome.com/a076d05399.js}"></script>
+    <script th:src="@{https://kit.fontawesome.com/a076d05399.js}"></script>
+
+</head>
+<body>
+<div layout:fragment="content">
+
+    <!-- Page Content -->
+    <div class="container">
+        <h5>OutBound<span>Sun, Oct 27, 2019</span></h5>
+        <p class="pull-right">All times are Local</p>
+        <div class="jumbotron">
+
+            <div class="border-card">
+                <div class="card-type-icon with-border">
+                    <img th:src="@{images/logo.png}" height="60px">
+                </div>
+                <div class="content-wrapper">
+                    <div class="label-group fixed">
+                        <p class="title">8:00 AM</p>
+                        <p class="caption">DMK</p>
+                    </div>
+                    <div class="min-gap"></div>
+                    <div class="label-group">
+                        <p class="text-center">5 HRS</p>
+                        <p style="font-size: 25px;" class="title">&#9473;&#9473;&#9473;&#9477;&#9473;&#9473;&#9473;<i
+                                class="fa fa-fighter-jet" aria-hidden="true"></i></p>
+                        <p class="caption"></p>
+                    </div>
+                    <div class="min-gap"></div>
+                    <div class="label-group">
+                        <p class="title">5:00 PM</p>
+                        <p class="caption">CHG</p>
+                    </div>
+                    </a>
+                </div>
+
+
+            </div>
+        </div>
+
+    </div>
+    <!-- /.container -->
+
+</div>
+
+</body>
+</html>
