@@ -18,7 +18,24 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.security.Principal;
 import java.time.LocalDate;
+import edu.mum.cs.cs452.safeairlines.model.Airport;
+import edu.mum.cs.cs452.safeairlines.model.Flight;
+import edu.mum.cs.cs452.safeairlines.service.FlightService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.OutputStream;
+import java.util.List;
 @Controller
 @RequestMapping("/user/booking")
 public class BookingController {
@@ -29,6 +46,8 @@ public class BookingController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private ServletContext context;
 
     @Autowired
     EmailService emailService;
@@ -86,6 +105,44 @@ public class BookingController {
 
         return "private/bookingReceipt";
     }
+
+    // Report Methode
+    @GetMapping(value = "/report")
+    public void flightPDF(HttpServletRequest request, HttpServletResponse response) {
+
+        List<Flight> flight = flightService.getAllFlights();
+         boolean isFlag = flightService.generatePDF(flight, context, request, response);
+        if (isFlag) {
+             String fullPath = request.getServletContext().getRealPath("/resources/reports/" + "flights" + ".pdf");
+            filedownload(fullPath, response, "flights.pdf");
+        }
+
+    }
+    private void filedownload(String fullPath, HttpServletResponse response, String filename) {
+        File file = new File(fullPath);
+        final int BUFFER_SIZE = 4096;
+        if (file.exists()) {
+            try {
+                FileInputStream inputStream = new FileInputStream(file);
+                String mimeType = context.getMimeType(fullPath);
+                response.setContentType(mimeType);
+                response.setHeader("content-disposition", "attachment; filename=" + filename);
+                OutputStream outputStream = response.getOutputStream();
+                byte buffer[] = new byte[BUFFER_SIZE];
+                int byteReads = -1;
+                while ((byteReads = inputStream.read(buffer)) != -1) {
+                    outputStream.write(buffer, 0, byteReads);
+                }
+                inputStream.close();
+                outputStream.close();
+                file.delete();
+            } catch (Exception e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+    }
+
 
 
 }
