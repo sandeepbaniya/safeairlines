@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.security.Principal;
+import java.time.LocalDate;
 
 @Controller
 @RequestMapping("/user/booking")
@@ -37,12 +38,19 @@ public class BookingController {
     public String verifyInfo(@RequestParam ("flightId") Long flightId, Principal principal, Model model){
         model.addAttribute("user",userService.getUerByMail(principal.getName()));
         model.addAttribute("flight",flightService.getFlightById(flightId));
+        model.addAttribute("date", LocalDate.now());
 
-        System.out.println(principal.getName());
-        System.out.println(principal.getName());
+
+//        System.out.println(principal.getName());
+        System.out.println(flightService.getFlightById(flightId));
         System.out.println("id of User :"+userService.getUerByMail(principal.getName()).getId());
 
-        return  "/private/detailBooking";
+        return  "/private/checkout";
+    }
+
+    @GetMapping()
+    public String confirmInfo(){
+        return  null;
     }
 
 

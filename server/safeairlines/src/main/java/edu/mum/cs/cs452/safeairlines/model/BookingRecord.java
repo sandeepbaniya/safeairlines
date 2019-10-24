@@ -18,4 +18,5 @@ public class BookingRecord {
     @ManyToOne
     private Flight flight;
 
+
 }

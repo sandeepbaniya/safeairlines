@@ -55,10 +55,6 @@ public class HomeController {
         return "users";
     }
 
-    @GetMapping("/checkout")
-    public String chekoutPage(){
-        return "private/checkout";
-    }
 
 
 
