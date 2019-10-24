@@ -127,6 +127,7 @@ color:#000 !important;
     margin: 0 auto;
   display:flex;
   flex-wrap:wrap;
+    min-height: 500px;
 }
 h3 {
     padding: 0 0vw 1em;
@@ -163,6 +164,7 @@ label {
     justify-content: center;
     background-color: #343a40;
     flex-basis: 100%;
+
 }
 .copy-wthree {
     text-align: center;

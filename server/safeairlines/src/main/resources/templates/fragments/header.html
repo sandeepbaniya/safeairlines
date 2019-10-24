@@ -3,7 +3,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
         <div class="container">
-            <a class="navbar-brand" th:href="@{/}">
+            <a class="navbar-brand" th:href="@{/index}">
                 <img th:src="@{/images/logo.png}" height="40px">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
@@ -12,48 +12,51 @@
             </button>
 
             <div class="collapse navbar-collapse" id="ftco-nav">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active"><a th:href="@{/}" class="nav-link">Home</a></li>
-                    <li sec:authorize="isAuthenticated()" class="nav-item"><a href="#" class="nav-link">My Bookings</a></li>
+                <ul class="navbar-nav float-left" style="margin-left: 20px;">
+                    <li class="nav-item active"><a th:href="@{/index}" class="nav-link">Home</a></li>
 
 
-
-
-
-
-                    <li class="nav-item"><a href="#" class="nav-link">About</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link">Places</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link">Hotels</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link">Blog</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link">Contact</a></li>
-                    <li>
-
-                        <form class="form-inline my-2 my-lg-0">
-                            <span sec:authorize="isAnonymous()" style="color:#fff;padding-left: 2em; padding-right: 1em;">Welcome, Guest</span>
-                            <span sec:authorize="isAuthenticated()"style="color:#fff;padding-left: 0em; padding-right: 0.5em;">Welcome, </span><span sec:authorize="isAuthenticated()" style="color:#fff;padding-left: 0em; padding-right: 0.5em;"
-                                sec:authentication="principal.username"></span>
-                            <a sec:authorize="isAnonymous()" href="/login" class="btn btn-secondary">Sign In</a>
-                            <a sec:authorize="isAuthenticated()" href="/public/logout" class="btn btn-secondary">Sign Out</a>
-                        </form>
-
-
-
+                    <li sec:authorize="hasAuthority('USER')" class="nav-item "><a href="#" class="nav-link">Bookings</a>
                     </li>
-                    <li class="nav-item"><a href="#" class="nav-link">
-                        <img th:src="@{/images/fr.svg}"height="20px">
-                    </a></li>
-                    <li class="nav-item"><a href="#" class="nav-link">
-                        <img th:src="@{/images/us.svg}"height="20px">
-                    </a></li>
+
+                    <div sec:authorize="hasAuthority('ADMIN')" class="dropdown show">
+                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Admin Menu
+                        </a>
+
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" href="#">Manage Flight</a>
+                            <a class="dropdown-item" href="#">Mange Airport</a>
+
+                        </div>
+                    </div>
+
 
                 </ul>
             </div>
-            <!--            <form class="form-inline my-2 my-lg-0">-->
-            <!--                <span sec:authorize="isAnonymous()" style="color:#fff;padding-left: 2em; padding-right: 1em;">Welcome, Guest</span>-->
-            <!--                <span sec:authorize="isAuthenticated()" style="color:#fff;padding-left: 0em; padding-right: 0.5em;">Welcome, </span><span sec:authorize="isAuthenticated()" style="color:#fff;padding-left: 0em; padding-right: 0.5em;" sec:authentication="principal.username"></span>-->
-            <!--                <a sec:authorize="isAnonymous()" href="/elibrary/public/login" class="btn btn-secondary">Sign In</a>-->
-            <!--                <a sec:authorize="isAuthenticated()" href="/elibrary/public/logout" class="btn btn-secondary">Sign Out</a>-->
-            <!--            </form>-->
+
+            <form class="form-inline my-2 my-lg-0">
+
+                        <span class="float-right" sec:authorize="isAuthenticated()"
+                              style="color:#fff;padding-left: 0em; padding-right: 0.5em;">Welcome, </span><span
+                    sec:authorize="isAuthenticated()"
+                    style="color:#fff;padding-left: 0em; padding-right: 0.5em;"
+                    sec:authentication="principal.username"></span>
+                <a sec:authorize="isAnonymous()" href="/login" class="btn btn-secondary float-right">Sign In</a>
+                <a sec:authorize="isAuthenticated()" href="/public/logout" class="btn btn-secondary float-right">Sign
+                    Out</a>
+            </form>
+
+            <div class="flag-link">
+
+                <a href="#" class="nav-item float-right">
+                    <img th:src="@{/images/eng.png}" height="20px" width="30px">
+                </a>
+                <a href="#" class="nav-item float-right">
+                    <img th:src="@{/images/french.png}" height="20px" width="30px">
+                </a>
+            </div>
 
         </div>
     </nav>
