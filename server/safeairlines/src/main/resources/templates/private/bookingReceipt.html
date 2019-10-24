@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5" layout:decorate="~{layout/main_layout}"
+      xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>Safe Airline- List</title>
+    <link rel="stylesheet" th:href="@{/css/bookingReceipt-style.css}">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+
+    <script th:src="@{https://kit.fontawesome.com/a076d05399.js}"></script>
+    <script th:src="@{https://kit.fontawesome.com/a076d05399.js}"></script>
+
+</head>
+<body>
+<div layout:fragment="content">
+
+    <!-- Page Content -->
+    <div class="container">
+        <h4 class="text-secondary text-center"><span class="text-success">Congratulations for Booking.</span> We have sent you a ticket on your email or
+            you can download
+            it below. </h4>
+
+        <div class="reciept">
+            <div class="row" style="margin-top:10px;">
+                <div class="col-md-8">
+                    <div class="col-md-3">
+                        <img th:src="@{/images/safeairlines.png}" height="70px" class="img-fluid">
+                    </div>
+
+                    <div class="col-md-9 text-right">
+                        <h4 class="heading">SafeAirlines - Flight Ticket</h4>
+                        <h6 class="heading">1000 4th North Street</h6>
+                        <h6 class="heading">+1234567345</h6>
+                    </div>
+                </div>
+                <div class="col-md-4">
+
+                    <div class="form-group">
+                        <label class="col-md-4 control">Reservation Date :</label>
+                        <div class="col-md-8">
+                            <input name="name" type="text" placeholder="10-May-2017 02:05 pm"
+                                   class="form-control" readonly>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-4 control">Reciept No. : 125741</label>
+                        <div class="col-md-8">
+                            <input name="name" type="text" placeholder="12349" class="form-control" readonly>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+            <br/>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="col-md-3 control">Passenger Name :</label>
+                        <div class="col-md-9">
+                            <input name="name" type="text" placeholder="Sandeep Baniya" class="form-control" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control">Flight Number:</label>
+                        <div class="col-md-9">
+                            <input name="name" type="text" placeholder="FL25555" class="form-control" readonly>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label class="col-md-3 control">Plane Number:</label>
+                        <div class="col-md-9">
+                            <input name="name" type="text" placeholder="PL2155" class="form-control" readonly>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="row">
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="col-md-3 control">Departure Date :</label>
+                        <div class="col-md-9">
+                            <input name="name" type="text" placeholder="October 23 2019" class="form-control" readonly>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="col-md-3 control">Arrival Date:</label>
+                        <div class="col-md-9">
+                            <input name="name" type="text" placeholder="Oct 30 20190" class="form-control" readonly>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <br/>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="col-md-3 control">Departure Time:</label>
+                        <div class="col-md-9">
+                            <input name="name" type="text" placeholder="3:00 AM" class="form-control" readonly>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-md-3 control">Arrival Time</label>
+                            <div class="col-md-9">
+                                <input type="text" placeholder="4:00 PM" class="form-control" readonly>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+
+
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-md-3 control">Origin :</label>
+                            <div class="col-md-9">
+                                <input name="name" type="text" placeholder="Nepal Airport" class="form-control"
+                                       readonly>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-md-3 control">Destination:</label>
+                            <div class="col-md-9">
+                                <input name="name" type="text" placeholder="JFK - Jeferson Airport" class="form-control"
+                                       readonly>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+            <!--End of row-->
+            <div class="row">
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="col-sm-3 control">Email</label>
+                        <div class="col-sm-9">
+                            <input name="name" type="text" placeholder="john@gamil.com" class="form-control" readonly>
+                        </div>
+                    </div>
+                </div>
+
+                 <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="col-sm-3 control">Phone Number: </label>
+                        <div class="col-sm-9">
+                            <input name="name" type="text" placeholder="+146221444444" class="form-control" required>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+
+
+        <br/>
+
+        <div class="row">
+            <div class="col-md-12">
+
+                 <button class="btn btn-success">Download Ticket</button>
+            </div>
+
+
+        </div>
+
+        <div class="row" style="margin-top:80px;">
+            <div class="col-md-9">
+            </div>
+
+        </div>
+
+
+    </div>
+</div>
+
+</div>
+</body>
+</html>
