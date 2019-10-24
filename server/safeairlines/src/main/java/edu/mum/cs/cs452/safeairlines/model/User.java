@@ -1,9 +1,7 @@
 package edu.mum.cs.cs452.safeairlines.model;
 
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -37,7 +35,7 @@ public class User implements Serializable {
 
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
-    private List<Payment> payments;
+    private List<CreditCard> creditCards;
 
     @OneToMany
     @JoinTable(name = "feedback")
