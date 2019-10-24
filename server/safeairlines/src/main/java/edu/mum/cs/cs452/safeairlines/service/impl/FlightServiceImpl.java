@@ -61,4 +61,17 @@ public class FlightServiceImpl implements FlightService {
 
         return result;
     }
+
+    @Override
+    public boolean compareDate(LocalDate departureDate, LocalDate arrivalDate) {
+        System.out.println(departureDate);
+        System.out.println(arrivalDate);
+        return  departureDate.isBefore(LocalDate.now()) || arrivalDate.isBefore(departureDate);
+
+    }
+
+    @Override
+    public boolean checkDepAndArrPlace(Flight flight) {
+        return flight.getDepaturePlace().equals(flight.getArrivalPlace());
+    }
 }

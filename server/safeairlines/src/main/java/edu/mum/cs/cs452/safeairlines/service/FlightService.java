@@ -13,5 +13,7 @@ public interface FlightService {
     Flight getFlightById(Long id);
     List<Flight> getFlightBaseOnCriteria(String chain);
     List<Flight> listFlightForBooking(LocalDate depDate,LocalDate arrrivDate, Long depPlace, Long ArrivPlace);
+    boolean compareDate(LocalDate departureDate, LocalDate arrivalDate);
+    boolean checkDepAndArrPlace(Flight flight);
 
 }

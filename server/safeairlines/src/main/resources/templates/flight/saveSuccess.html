@@ -1,19 +1,24 @@
+
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5" layout:decorate="~{layout/main_layout}"
+      xmlns="http://www.w3.org/1999/html">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Safe Airline- Detail</title>
 </head>
 <body>
-
-
+<div layout:fragment="content" >
+    <br>
 Flight Number :
-<span ></span><br>
+<span ></span>
 <div th:if="${flight != null}" th:text="${flight.flightNumber}">
 
 </div>
+    Successfull Add !!
+</div>
 
-Successfull Add !!
+<a href="/admin/flight/list"> List Flight</a>
+<br>
+<th:block layout:fragment="footer"></th:block>
 </body>
 </html>

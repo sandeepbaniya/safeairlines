@@ -38,11 +38,23 @@ public class FlightController {
     public String addNewFlight(@Valid @ModelAttribute("flight") Flight flight, BindingResult result,
                                RedirectAttributes attributes, Model model){
 
+
         if (result.hasErrors()) {
             model.addAttribute("errors", result.getAllErrors());
             model.addAttribute("aiports",airportService.findAllAirport());
             return  "flight/addFlight";
         }
+         if(flightService.compareDate(flight.getDeptDate(),flight.getArrivalDate())){
+             model.addAttribute("aiports",airportService.findAllAirport());
+             model.addAttribute("msgErr","Error in Departure Date or Arrival Date");
+             return  "flight/addFlight";
+         }
+
+         if(flightService.checkDepAndArrPlace(flight)){
+             model.addAttribute("aiports",airportService.findAllAirport());
+             model.addAttribute("msgErr","Depature place must be different from arrival place !");
+             return  "flight/addFlight";
+         }
 
         attributes.addFlashAttribute("flight",flightService.saveFlight(flight));
         return "redirect:/admin/flight/success";

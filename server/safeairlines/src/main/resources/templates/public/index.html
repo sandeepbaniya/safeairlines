@@ -34,8 +34,8 @@
                      data-scrollax-parent="true">
                     <div class="col-md-9 ftco-animate mb-5 pb-5 text-center text-md-left"
                          data-scrollax=" properties: { translateY: '70%' }">
-                        <h1 class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Discover <br>A new
-                            Place</h1>
+                        <h1 class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><span th:text="#{index.msg1}">Discover</span> <br>  <span th:text="#{index.msg2}">A new
+                            Place </span></h1>
                         <p data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Find great places to stay, eat, shop,
                             or visit from local experts</p>
                     </div>
@@ -138,7 +138,7 @@
                                     <div class="row text-center">
                                         <div class="col-4"></div>
                                         <div class="form-check col">
-                                            <input class="form-check-input" type="radio" name="way_type" id="one" value="one" onclick="tripWay(1)">
+                                            <input class="form-check-input" type="radio" name="way_type" id="one" value="one" onclick="tripWay(1)" checked="checked" >
                                             <label class="form-check-label" for="one">
                                                 One way
                                             </label>

@@ -19,15 +19,17 @@
 
     <ol class="breadcrumb">
       <li class="breadcrumb-item">
-        <a href="index.html">Home</a>
+        <a href="/">Home</a>
       </li>
       <li class="breadcrumb-item active">Add </li>
     </ol>
 
     <div class="jumbotron">
+        <span th:text="${msgErr}" class="text-danger"  role="alert"  ></span>
       <form id="newFlight" name="" method="post" action="/admin/flight/new" th:object="${flight}" methode="post">
               <div class="form-row">
                 <div class="form-group col-md-6">
+
                   <label for="inputFlightNum">Flight Number</label>
                     <input type="text" th:field="*{flightNumber}" class="form-control" id= "inputFlightNum" placeholder="Flight Number" name="flightNumber">
                   <span th:if="${#fields.hasErrors('flightNumber')}" th:errors="*{flightNumber}" class="text-danger"></span>
@@ -103,7 +105,7 @@
     <!-- /.jumbotron -->
 </div>
 
-<th:block layout:fragment="footer"></th:block>
+    <th:block layout:fragment="footer"></th:block>
   <!-- /.container -->
 
 </body>
