@@ -18,18 +18,18 @@
 
     <!-- Page Content -->
     <div class="container">
-        <h5>OutBound<span>Sun, Oct 27, 2019</span></h5>
+        <h5>OutBound - <span th:text="${date}">Sun, Oct 27, 2019</span></h5>
         <p class="float-right text-info">All times are Local</p>
         <div class="jumbotron">
 
             <div class="border-card">
                 <div class="card-type-icon with-border">
-                    <img class="img-responsive" th:src="@{images/logo.png}" height="60px">
+                    <img class="img-responsive" th:src="@{/images/logo.png}" height="60px">
                 </div>
                 <div class="content-wrapper">
                     <div class="label-group fixed">
-                        <p class="title">8:00 AM</p>
-                        <p class="caption">DMK</p>
+                        <p class="title">8:00 AM </p>
+                        <p class="caption"><span th:text="${flight.depaturePlace.name}">DMK</span></p>
                     </div>
                     <div class="min-gap"></div>
                     <div class="label-group">
@@ -41,7 +41,7 @@
                     <div class="min-gap"></div>
                     <div class="label-group">
                         <p class="title">5:00 PM</p>
-                        <p class="caption">CHG</p>
+                        <p class="caption"><span th:text="${flight.arrivalPlace.name}">CHG</span></p>
                     </div>
                     </a>
                 </div>
@@ -52,26 +52,29 @@
 
             <div class="bill">
                 <h6>Tax: 10%</h6>
-                <h6>Flight Price: $350</h6>
-                <h6 class="text-success">Total: $400</h6>
+                <h6>Flight Price : <span th:text="${flight.price}">Flight Price: $350</span></h6>
+                <h6 class="text-success"> Total : <span th:text="${'$'}+${(flight.price*0.1)+flight.price}"> Total: $400</span></h6>
 
             </div>
 
 
             <div class="payment-input">
+                <form id="newFlight" name=""   action ="/user/booking/confirmInfo"  methode="get">
+                    <input type="hidden" id="flightId" th:name="flightId" th:value="${flight.id}">
+                    <input type="hidden" id="userId"    th:name="userId" th:value="${user.id}">
                 <fieldset>
                 <div form-group>
                     <label for="card_number">Credit Card Number</label>
-                    <input class="form-control" type="text" id="card_number" placeholder="" required="">
+                    <input name="card_number" class="form-control" type="text" id="card_number" placeholder="" required="">
                 </div>
 
                 <div class="form-group">
                     <label for="cvv">CVV</label>
-                    <input class="form-control" type="text" id="cvv" placeholder="" required="">
+                    <input name="cvv" class="form-control" type="text" id="cvv" placeholder="" required="">
                 </div>
                     <input  type="submit" class="btn btn-success" value="Confirm And Pay">
                 </fieldset>
-
+             </form>
 
             </div>
         </div>

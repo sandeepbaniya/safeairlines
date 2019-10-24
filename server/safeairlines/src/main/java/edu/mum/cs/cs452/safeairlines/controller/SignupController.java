@@ -41,9 +41,9 @@ public class SignupController {
             return "public/signup";
         }
 
-        Role role = roleService.getRoleById(1l);
-        System.out.println("=================> " + role.getRoleType());
-        user.addRole(role);
+        //Role role = roleService.getRoleById(1l);
+       // System.out.println("=================> " + role.getRoleType());
+      //  user.addRole(role);
         userService.save(user);
 
         return "redirect:/login";

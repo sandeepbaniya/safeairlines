@@ -41,10 +41,9 @@ public class Flight {
     private Airport arrivalPlace;
     private Integer numbSeat;
     private Double price;
-    // I dont want to create record yet in the database for this field
-   // @Transient
+
     //private List<FeedBack> feedBacks = new ArrayList<>();
-    @Transient
+    @OneToMany(mappedBy = "flight",cascade = CascadeType.ALL)
     private List<BookingRecord> bookingRecords = new ArrayList<>();
 
 

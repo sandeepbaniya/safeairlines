@@ -1,9 +1,8 @@
 package edu.mum.cs.cs452.safeairlines.model;
 
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -37,14 +36,22 @@ public class User implements Serializable {
 
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
-    private List<Payment> payments;
+    private List<CreditCard> creditCards;
 
     @OneToMany
     @JoinTable(name = "feedback")
     private List<Feedback> feedBacks;
 
+    @OneToMany
+    @JoinColumn (name = "IdUser")
+    private List<BookingRecord> bookingRecords = new ArrayList<>();
+
     public void addRole(Role role) {
         this.roles.add(role);
+    }
+
+    public void  addBookingRecord(BookingRecord bookingRecord){
+        this.bookingRecords.add(bookingRecord);
     }
 
 }
