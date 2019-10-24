@@ -1,5 +1,6 @@
 package edu.mum.cs.cs452.safeairlines.controller;
 
+import edu.mum.cs.cs452.safeairlines.email.EmailService;
 import edu.mum.cs.cs452.safeairlines.model.BookingRecord;
 import edu.mum.cs.cs452.safeairlines.model.Flight;
 import edu.mum.cs.cs452.safeairlines.model.User;
@@ -28,6 +29,10 @@ public class BookingController {
     @Autowired
     private UserService userService;
 
+
+    @Autowired
+    EmailService emailService;
+
 //    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
     //Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
@@ -38,47 +43,49 @@ public class BookingController {
 //    }
 
     @GetMapping("/checkInfo")
-    public String verifyInfo(@RequestParam ("flightId") Long flightId, Model model){
-        model.addAttribute("flight",flightService.getFlightById(flightId));
+    public String verifyInfo(@RequestParam("flightId") Long flightId, Model model) {
+        model.addAttribute("flight", flightService.getFlightById(flightId));
         model.addAttribute("date", LocalDate.now());
 
         //System.out.println("id of User :"+userService.getUerByMail(principal.getName()).getId());
 
-        return  "/private/checkout";
+        return "/private/checkout";
     }
 
     @GetMapping("confirmInfo")
-    public String confirmationOfInfo(@RequestParam ("flightId") Long flightId,
-                                     @RequestParam("card_number") String card_number ,
-                                     @RequestParam ("cvv") String cvv, Principal principal,Model model){
+    public String confirmationOfInfo(@RequestParam("flightId") Long flightId,
+                                     @RequestParam("card_number") String card_number,
+                                     @RequestParam("cvv") String cvv, Principal principal, Model model) {
 
         Flight flight = flightService.getFlightById(flightId);
         User user = userService.getUerByMail(principal.getName());
 
         BookingRecord record = new BookingRecord();
-                    String confirmationCode = flight.getFlightNumber()+flight.getPlaneNumber()+"-"+user.getId();
-                    record.setBookingDate(LocalDate.now());
-                    record.setConfirmationCode(confirmationCode);
-                    record.setFlight(flight);
-                    user.addBookingRecord(record);
-                    User userRecord = userService.save(user);
+        String confirmationCode = flight.getFlightNumber() + flight.getPlaneNumber() + "-" + user.getId();
+        record.setBookingDate(LocalDate.now());
+        record.setConfirmationCode(confirmationCode);
+        record.setFlight(flight);
+        user.addBookingRecord(record);
+        User userRecord = userService.save(user);
 
 
 
-
-        model.addAttribute("flight",flight);
-        model.addAttribute("user",userRecord);
-        model.addAttribute("record",record);
-         //we need to check information about his credit card
+        model.addAttribute("flight", flight);
+        model.addAttribute("user", userRecord);
+        model.addAttribute("record", record);
+        //we need to check information about his credit card
         // make some computation
+
+        String to = user.getEmail();
+        String subject = "SafeAirlines - You have a flight Booking";
+        String text = "Hello, " + user.getFullName() + " You have confirmed a booking. Booking Confirmation Code: " +
+                record.getConfirmationCode() + " ,Flight Number: " + flight.getFlightNumber() + " ,Plane: " + flight.getPlaneNumber();
+
+        emailService.sendSimpleMessage(to,subject,text);
 
 
         return "private/bookingReceipt";
     }
-
-
-
-
 
 
 }
