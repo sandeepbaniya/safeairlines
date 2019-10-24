@@ -9552,3 +9552,14 @@ h5 {
 }
 }
 /** /Responsive **/
+
+
+.flag-link{
+  float: right;
+  margin-left: 10px;
+}
+
+
+.flag-link a{
+  padding-left: 5px;
+}
