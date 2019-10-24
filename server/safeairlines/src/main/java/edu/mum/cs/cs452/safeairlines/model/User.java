@@ -42,7 +42,7 @@ public class User implements Serializable {
     @JoinTable(name = "feedback")
     private List<Feedback> feedBacks;
 
-    @OneToMany
+    @OneToMany (cascade = CascadeType.ALL)
     @JoinColumn (name = "IdUser")
     private List<BookingRecord> bookingRecords = new ArrayList<>();
 
@@ -52,6 +52,10 @@ public class User implements Serializable {
 
     public void  addBookingRecord(BookingRecord bookingRecord){
         this.bookingRecords.add(bookingRecord);
+    }
+
+    public String getFullName(){
+        return  this.firstName +" "+this.lastName;
     }
 
 }

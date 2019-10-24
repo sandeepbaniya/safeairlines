@@ -1,5 +1,8 @@
 package edu.mum.cs.cs452.safeairlines.controller;
 
+import edu.mum.cs.cs452.safeairlines.model.BookingRecord;
+import edu.mum.cs.cs452.safeairlines.model.Flight;
+import edu.mum.cs.cs452.safeairlines.model.User;
 import edu.mum.cs.cs452.safeairlines.service.FlightService;
 import edu.mum.cs.cs452.safeairlines.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,23 +38,44 @@ public class BookingController {
 //    }
 
     @GetMapping("/checkInfo")
-    public String verifyInfo(@RequestParam ("flightId") Long flightId, Principal principal, Model model){
-        model.addAttribute("user",userService.getUerByMail(principal.getName()));
+    public String verifyInfo(@RequestParam ("flightId") Long flightId, Model model){
         model.addAttribute("flight",flightService.getFlightById(flightId));
         model.addAttribute("date", LocalDate.now());
 
-
-//        System.out.println(principal.getName());
-        System.out.println(flightService.getFlightById(flightId));
-        System.out.println("id of User :"+userService.getUerByMail(principal.getName()).getId());
+        //System.out.println("id of User :"+userService.getUerByMail(principal.getName()).getId());
 
         return  "/private/checkout";
     }
 
-    @GetMapping()
-    public String confirmInfo(){
-        return  null;
+    @GetMapping("confirmInfo")
+    public String confirmationOfInfo(@RequestParam ("flightId") Long flightId,
+                                     @RequestParam("card_number") String card_number ,
+                                     @RequestParam ("cvv") String cvv, Principal principal,Model model){
+
+        Flight flight = flightService.getFlightById(flightId);
+        User user = userService.getUerByMail(principal.getName());
+
+        BookingRecord record = new BookingRecord();
+                    String confirmationCode = flight.getFlightNumber()+flight.getPlaneNumber()+"-"+user.getId();
+                    record.setBookingDate(LocalDate.now());
+                    record.setConfirmationCode(confirmationCode);
+                    record.setFlight(flight);
+                    user.addBookingRecord(record);
+                    User userRecord = userService.save(user);
+
+
+
+
+        model.addAttribute("flight",flight);
+        model.addAttribute("user",userRecord);
+        model.addAttribute("record",record);
+         //we need to check information about his credit card
+        // make some computation
+
+
+        return "private/bookingReceipt";
     }
+
 
 
 

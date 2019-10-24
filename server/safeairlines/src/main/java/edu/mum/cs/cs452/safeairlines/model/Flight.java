@@ -46,5 +46,10 @@ public class Flight {
     @OneToMany(mappedBy = "flight",cascade = CascadeType.ALL)
     private List<BookingRecord> bookingRecords = new ArrayList<>();
 
+    public void setBokingRecord (BookingRecord bookingRecord){
+        bookingRecord.setFlight(this);
+        this.bookingRecords.add(bookingRecord);
+    }
+
 
 }
